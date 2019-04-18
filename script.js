@@ -61,20 +61,23 @@ sendForm = () => {
     const VideoGame = Parse.Object.extend('VideoGame');
     const videoGame = new VideoGame();
 
-    videoGame.set('titolo', document.getElementById('titolo').value );
-    // videoGame.set('sviluppatore', document.getElementById('sviluppatore').value );
-    // videoGame.set('cover', document.getElementById('cover').value );
-    // videoGame.set('prezzo', document.getElementById('prezzo').value );
-    // videoGame.set('recensione', document.getElementById('recensione').value );
+    videoGame.set('titolo', document.getElementById('titolo').value);
+    videoGame.set('sviluppatore', document.getElementById('sviluppatore').value);
+    videoGame.set('recensione', document.getElementById('recensione').value);
+    videoGame.set('cover', document.getElementById('cover').value);
+    videoGame.set('prezzo', parseFloat(document.getElementById('prezzo').value));
 
 
+    
 
     videoGame.save().then(
         (result) => {
-            alert('salvato!');
+            createHtml();
         },
         (error) => {
             alert('errore!');
         }
     );
+
+    
 }
