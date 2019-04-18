@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="node_modules/parse/dist/parse.min.js"></script>
+    
+</head>
+
+<body>
+    <script>
+        Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+        Parse.initialize(
+            '99vDniPFwNhsqQs0gGwfbbK1c3Q7kOkuOfLJjOhM', // This is your Application ID
+            'djtinC0PtS7MhcjDimew4dbWttvDVJotPbSfjjid' // This is your Javascript key
+        );
+    </script>
+
+    <div id="searchbar">
+        <input type="text" placeholder="Cerca..." id="search" onkeyup="createHtml()">
+        <button id="buttonPrice" onclick="buttonPrice()">ordina per prezzo</button>
+        <button id="buttonTitle" onclick="buttonTitle()">ordina per titolo</button>
+    </div>
+    <div id="container"></div>
+
+    <form id="myForm">
+        <p>Carica il tuo gioco preferito!</p>
+        <input id="titolo" placeholder="titolo">
+        <input id="sviluppatore" placeholder="sviluppatore">
+        <input id="cover" placeholder="cover">
+        <input id="prezzo" placeholder="prezzo">
+        <input id="recensione" placeholder="recensione">
+        <button onclick="sendForm()">invio</button>
+    </form>
+
+
+    <div style="width:100%; height: 600px; background-color:coral"></div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

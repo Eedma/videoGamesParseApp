@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#searchbar {
+    width: 100vw;
+    height: 10vh;
+    background-color: palegreen;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+#search,
+button {
+    height: 40%;
+    border-radius: 30px;
+    align-self: center;
+    padding: 6px;
+    margin: 20px;
+}
+
+button {
+    border: 1px solid black;
+    padding: 0 auto 0 auto;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: sans-serif;
+    margin: 16px;
+}
+
+.box {
+    border: 1px solid black;
+    display: grid;
+    margin: auto;
+}
+
+.cover {
+    height: 300px;
+    width: auto;
+    margin: auto;
+}
+
+.title {
+    justify-self: center;
+    margin: 6px;
+}
+
+.publisher {
+    border-top: 1px solid black;
+    padding: 2px;
+}
+
+.price {
+    padding: 2px;
+}
+
+.review {
+    padding: 14px;
+    border-top: 1px solid black;
+}
+
+#myForm {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr;
+    background-color: cadetblue;
+    width: 20%;
+    margin: auto;
+    border: 1px solid black;
+}
