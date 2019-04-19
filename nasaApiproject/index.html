@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        #imgOfDay {
+            display: grid;
+            grid-template-columns: 1frs;
+            justify-items: center;
+            max-width: 80vw;
+            margin: auto;
+        }
+        #resp{
+            width: 50vw;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="imgOfDay"></div>
+
+
+    <script>
+        const url = 'https://api.nasa.gov/planetary/apod?api_key=ghlYClKSWSwrguWeQL0qGT4Z2qWyfBVlQpUxqh0a';
+        let Data = [];
+        fetch(url)
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    response.json().then(function (data) {
+                        //console.log(data);
+                        Data.push(data)
+                        createHTML();
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+
+            createHTML = () => {
+                let testo = Data[0].title;
+                let immagine = Data[0].hdurl;
+                let descrizione = Data[0].explanation;
+                document.getElementById('imgOfDay').innerHTML += `
+                    <h1>${testo}</h1>
+                    <img id="resp" src="${immagine}">
+                    <p>${descrizione}</p>
+                `;
+            }
+        console.log(Data);
+    </script>
+</body>
+
+</html>

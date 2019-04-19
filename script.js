@@ -1,5 +1,6 @@
 let videoGames = [];
 let input = document.getElementById('search');
+let selector = document.getElementById('genere');
 let loadVideoGameData = (callback) => {
     const VideoGame = Parse.Object.extend("VideoGame");
     // Creates a new Query object to help us fetch MyCustomClass objects
@@ -16,15 +17,17 @@ loadVideoGameData((results) => {
 
 let createHtml = () => {
     let container = document.getElementById('container');
-
-
     container.innerHTML = '';
+    selector.innerHTML = '<option selected="selected">scegli una categoria</option>';
 
-    //videoGames.sort((a,b) => a.get('titolo').localeCompare(b.get('titolo')))
     for (let x = 0; x < videoGames.length; ++x) {
+        
+        document.getElementById('genere').innerHTML += `<option>${videoGames[x].get('genere')}</option>`;
 
-        if (videoGames[x].get('titolo').toLowerCase().includes(input.value.toLowerCase()) || videoGames[x]
-            .get('sviluppatore').toLowerCase().includes(input.value.toLowerCase())) {
+        if (videoGames[x].get('titolo').toLowerCase().includes(input.value.toLowerCase()) || 
+            videoGames[x].get('sviluppatore').toLowerCase().includes(input.value.toLowerCase()) //||
+            //videoGames[x].get('genere').includes(selector.value) 
+            ) {
             container.innerHTML += `
                         <div class="box" onclick="alertBox(videoGames[${x}])">
                             <div class="title">${videoGames[x].get('titolo')}</div>
@@ -35,14 +38,12 @@ let createHtml = () => {
                         </div>
                     `;
         }
-
     }
+
 }
 
-
 alertBox = (game) => {
-
-    alert('hai ijsgijn ' + game.get('titolo'))
+    alert('hai selezionato ' + game.get('titolo'))
 }
 
 let buttonPrice = () => {
@@ -55,8 +56,6 @@ let buttonTitle = () => {
     createHtml();
 };
 
-
-
 sendForm = () => {
     const VideoGame = Parse.Object.extend('VideoGame');
     const videoGame = new VideoGame();
@@ -67,9 +66,6 @@ sendForm = () => {
     videoGame.set('cover', document.getElementById('cover').value);
     videoGame.set('prezzo', parseFloat(document.getElementById('prezzo').value));
 
-
-    
-
     videoGame.save().then(
         (result) => {
             createHtml();
@@ -77,7 +73,5 @@ sendForm = () => {
         (error) => {
             alert('errore!');
         }
-    );
-
-    
+    );    
 }
